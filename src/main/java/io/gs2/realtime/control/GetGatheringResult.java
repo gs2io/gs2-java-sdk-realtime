@@ -1,5 +1,7 @@
 package io.gs2.realtime.control;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import io.gs2.realtime.model.Gathering;
 
 /**
@@ -8,6 +10,7 @@ import io.gs2.realtime.model.Gathering;
  * @author Game Server Services, Inc.
  *
  */
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class GetGatheringResult {
 
 	/** ギャザリング */

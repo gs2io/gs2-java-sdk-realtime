@@ -2,6 +2,8 @@ package io.gs2.realtime.control;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import io.gs2.realtime.model.GatheringPool;
 
 /**
@@ -10,6 +12,7 @@ import io.gs2.realtime.model.GatheringPool;
  * @author Game Server Services, Inc.
  *
  */
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class DescribeGatheringPoolResult {
 
 	/** ギャザリング一覧 */
