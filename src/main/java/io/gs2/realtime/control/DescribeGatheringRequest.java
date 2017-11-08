@@ -1,13 +1,28 @@
+/*
+ * Copyright 2016 Game Server Services, Inc. or its affiliates. All Rights
+ * Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ */
+
 package io.gs2.realtime.control;
 
-import io.gs2.control.Gs2BasicRequest;
+import org.json.JSONObject;
+import java.util.List;
 import io.gs2.realtime.Gs2Realtime;
+import io.gs2.control.Gs2BasicRequest;
 
 /**
- * ギャザリング一覧の取得リクエスト。
- * 
  * @author Game Server Services, Inc.
- *
  */
 @SuppressWarnings("serial")
 public class DescribeGatheringRequest extends Gs2BasicRequest<DescribeGatheringRequest> {
@@ -16,64 +31,67 @@ public class DescribeGatheringRequest extends Gs2BasicRequest<DescribeGatheringR
 		public static final String FUNCTION = "DescribeGathering";
 	}
 
-	/** ギャザリングプール名 */
-	String gatheringPoolName;
-	/** 取得開始位置トークン */
-	String pageToken;
-	/** 取得件数 */
-	Integer limit;
+	/** ギャザリングプールの名前を指定します。 */
+	private String gatheringPoolName;
+
+	/** データの取得を開始する位置を指定するトークン */
+	private String pageToken;
+
+	/** データの取得件数 */
+	private Integer limit;
+
 
 	/**
-	 * ギャザリングプール名を取得。
-	 * 
-	 * @return ギャザリングプール名
+	 * ギャザリングプールの名前を指定します。を取得
+	 *
+	 * @return ギャザリングプールの名前を指定します。
 	 */
 	public String getGatheringPoolName() {
 		return gatheringPoolName;
 	}
-	
+
 	/**
-	 * ギャザリングプール名を設定。
-	 * 
-	 * @param gatheringPoolName ギャザリングプール名
+	 * ギャザリングプールの名前を指定します。を設定
+	 *
+	 * @param gatheringPoolName ギャザリングプールの名前を指定します。
 	 */
 	public void setGatheringPoolName(String gatheringPoolName) {
 		this.gatheringPoolName = gatheringPoolName;
 	}
-	
+
 	/**
-	 * ギャザリングプール名を設定。
-	 * 
-	 * @param gatheringPoolName ギャザリングプール名
+	 * ギャザリングプールの名前を指定します。を設定
+	 *
+	 * @param gatheringPoolName ギャザリングプールの名前を指定します。
 	 * @return this
 	 */
 	public DescribeGatheringRequest withGatheringPoolName(String gatheringPoolName) {
 		setGatheringPoolName(gatheringPoolName);
 		return this;
 	}
-	
+
 	/**
-	 * 取得開始位置トークンを取得。
-	 * 
-	 * @return 取得開始位置トークン
+	 * データの取得を開始する位置を指定するトークンを取得
+	 *
+	 * @return データの取得を開始する位置を指定するトークン
 	 */
 	public String getPageToken() {
 		return pageToken;
 	}
-	
+
 	/**
-	 * 取得開始位置トークンを設定。
-	 * 
-	 * @param pageToken 取得開始位置トークン
+	 * データの取得を開始する位置を指定するトークンを設定
+	 *
+	 * @param pageToken データの取得を開始する位置を指定するトークン
 	 */
 	public void setPageToken(String pageToken) {
 		this.pageToken = pageToken;
 	}
-	
+
 	/**
-	 * 取得開始位置トークンを設定。
-	 * 
-	 * @param pageToken 取得開始位置トークン
+	 * データの取得を開始する位置を指定するトークンを設定
+	 *
+	 * @param pageToken データの取得を開始する位置を指定するトークン
 	 * @return this
 	 */
 	public DescribeGatheringRequest withPageToken(String pageToken) {
@@ -82,31 +100,32 @@ public class DescribeGatheringRequest extends Gs2BasicRequest<DescribeGatheringR
 	}
 
 	/**
-	 * 取得件数を取得。
-	 * 
-	 * @return 取得件数
+	 * データの取得件数を取得
+	 *
+	 * @return データの取得件数
 	 */
 	public Integer getLimit() {
 		return limit;
 	}
-	
+
 	/**
-	 * 取得件数を設定。
-	 * 
-	 * @param limit 取得件数
+	 * データの取得件数を設定
+	 *
+	 * @param limit データの取得件数
 	 */
 	public void setLimit(Integer limit) {
 		this.limit = limit;
 	}
-	
+
 	/**
-	 * 取得件数を設定。
-	 * 
-	 * @param limit 取得件数
+	 * データの取得件数を設定
+	 *
+	 * @param limit データの取得件数
 	 * @return this
 	 */
 	public DescribeGatheringRequest withLimit(Integer limit) {
 		setLimit(limit);
 		return this;
 	}
+
 }

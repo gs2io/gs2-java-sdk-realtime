@@ -1,13 +1,28 @@
+/*
+ * Copyright 2016 Game Server Services, Inc. or its affiliates. All Rights
+ * Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ */
+
 package io.gs2.realtime.model;
 
-import java.io.Serializable;
 import java.util.List;
-
+import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
- * ギャザリング
- * 
+ * 購読
+ *
  * @author Game Server Services, Inc.
  *
  */
@@ -15,184 +30,236 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class Gathering implements Serializable {
 
-	/** ギャザリングID */
-	String gatheringId;
-	/** オーナーID */
-	String ownerId;
+	/** ホストGRN */
+	private String hostId;
+
 	/** ギャザリング名 */
-	String name;
-	/** ホストID */
-	String hostId;
-	/** IPアドレス */
-	String ipAddress;
-	/** 待ち受けポート */
-	Integer port;
+	private String name;
+
+	/** ホストIPアドレス */
+	private String ipAddress;
+
+	/** 参加可能なユーザIDリスト */
+	private List<String> userIds;
+
+	/** 通知GRN */
+	private String gatheringPoolId;
+
 	/** 暗号鍵 */
-	String secret;
-	/** 参加ユーザIDリスト */
-	List<String> userIds;
-	/** 作成日時 */
-	Long createAt;
-	
+	private String secret;
+
+	/** 作成日時(エポック秒) */
+	private Integer createAt;
+
+	/** 購読GRN */
+	private String gatheringId;
+
+	/** オーナーID */
+	private String ownerId;
+
+	/** 最終更新日時(エポック秒) */
+	private Integer updateAt;
+
+	/** ホストポート */
+	private Integer port;
+
+
 	/**
-	 * ギャザリングIDを取得
-	 * 
-	 * @return ギャザリングID
+	 * ホストGRNを取得
+	 *
+	 * @return ホストGRN
 	 */
-	public String getGatheringId() {
-		return gatheringId;
+	public String getHostId() {
+		return hostId;
 	}
-	
+
 	/**
-	 * ギャザリングIDを設定
-	 * 
-	 * @param gatheringId ギャザリングID
+	 * ホストGRNを設定
+	 *
+	 * @param hostId ホストGRN
 	 */
-	public void setGatheringId(String gatheringId) {
-		this.gatheringId = gatheringId;
+	public void setHostId(String hostId) {
+		this.hostId = hostId;
 	}
-	
-	/**
-	 * オーナーIDを取得
-	 * 
-	 * @return オーナーID
-	 */
-	public String getOwnerId() {
-		return ownerId;
-	}
-	
-	/**
-	 * オーナーIDを設定
-	 * 
-	 * @param ownerId オーナーID
-	 */
-	public void setOwnerId(String ownerId) {
-		this.ownerId = ownerId;
-	}
-	
+
 	/**
 	 * ギャザリング名を取得
-	 * 
+	 *
 	 * @return ギャザリング名
 	 */
 	public String getName() {
 		return name;
 	}
-	
+
 	/**
 	 * ギャザリング名を設定
-	 * 
+	 *
 	 * @param name ギャザリング名
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	/**
-	 * ホストIDを取得
-	 * 
-	 * @return ホストID
-	 */
-	public String getHostId() {
-		return hostId;
-	}
-	
-	/**
-	 * ホストIDを設定
-	 * 
-	 * @param hostId ホストID
-	 */
-	public void setHostId(String hostId) {
-		this.hostId = hostId;
-	}
-	
-	/**
-	 * IPアドレスを取得
-	 * 
-	 * @return IPアドレス
+	 * ホストIPアドレスを取得
+	 *
+	 * @return ホストIPアドレス
 	 */
 	public String getIpAddress() {
 		return ipAddress;
 	}
-	
+
 	/**
-	 * IPアドレスを設定
-	 * 
-	 * @param ipAddress IPアドレス
+	 * ホストIPアドレスを設定
+	 *
+	 * @param ipAddress ホストIPアドレス
 	 */
 	public void setIpAddress(String ipAddress) {
 		this.ipAddress = ipAddress;
 	}
-	
+
 	/**
-	 * 待ち受けポートを取得
-	 * 
-	 * @return 待ち受けポート
+	 * 参加可能なユーザIDリストを取得
+	 *
+	 * @return 参加可能なユーザIDリスト
 	 */
-	public Integer getPort() {
-		return port;
+	public List<String> getUserIds() {
+		return userIds;
 	}
-	
+
 	/**
-	 * 待ち受けポートを設定
-	 * 
-	 * @param port 待ち受けポート
+	 * 参加可能なユーザIDリストを設定
+	 *
+	 * @param userIds 参加可能なユーザIDリスト
 	 */
-	public void setPort(Integer port) {
-		this.port = port;
+	public void setUserIds(List<String> userIds) {
+		this.userIds = userIds;
 	}
-	
+
+	/**
+	 * 通知GRNを取得
+	 *
+	 * @return 通知GRN
+	 */
+	public String getGatheringPoolId() {
+		return gatheringPoolId;
+	}
+
+	/**
+	 * 通知GRNを設定
+	 *
+	 * @param gatheringPoolId 通知GRN
+	 */
+	public void setGatheringPoolId(String gatheringPoolId) {
+		this.gatheringPoolId = gatheringPoolId;
+	}
+
 	/**
 	 * 暗号鍵を取得
-	 * 
+	 *
 	 * @return 暗号鍵
 	 */
 	public String getSecret() {
 		return secret;
 	}
-	
+
 	/**
 	 * 暗号鍵を設定
-	 * 
+	 *
 	 * @param secret 暗号鍵
 	 */
 	public void setSecret(String secret) {
 		this.secret = secret;
 	}
-	
+
 	/**
-	 * 参加ユーザIDリストを取得
-	 * 
-	 * @return 参加ユーザIDリスト
+	 * 作成日時(エポック秒)を取得
+	 *
+	 * @return 作成日時(エポック秒)
 	 */
-	public List<String> getUserIds() {
-		return userIds;
-	}
-	
-	/**
-	 * 参加ユーザIDリストを設定
-	 * 
-	 * @param userIds 参加ユーザIDリスト
-	 */
-	public void setUserIds(List<String> userIds) {
-		this.userIds = userIds;
-	}
-	
-	/**
-	 * 作成日時を取得
-	 * 
-	 * @return 作成日時
-	 */
-	public Long getCreateAt() {
+	public Integer getCreateAt() {
 		return createAt;
 	}
-	
+
 	/**
-	 * 作成日時を設定
-	 * 
-	 * @param createAt 作成日時
+	 * 作成日時(エポック秒)を設定
+	 *
+	 * @param createAt 作成日時(エポック秒)
 	 */
-	public void setCreateAt(Long createAt) {
+	public void setCreateAt(Integer createAt) {
 		this.createAt = createAt;
 	}
+
+	/**
+	 * 購読GRNを取得
+	 *
+	 * @return 購読GRN
+	 */
+	public String getGatheringId() {
+		return gatheringId;
+	}
+
+	/**
+	 * 購読GRNを設定
+	 *
+	 * @param gatheringId 購読GRN
+	 */
+	public void setGatheringId(String gatheringId) {
+		this.gatheringId = gatheringId;
+	}
+
+	/**
+	 * オーナーIDを取得
+	 *
+	 * @return オーナーID
+	 */
+	public String getOwnerId() {
+		return ownerId;
+	}
+
+	/**
+	 * オーナーIDを設定
+	 *
+	 * @param ownerId オーナーID
+	 */
+	public void setOwnerId(String ownerId) {
+		this.ownerId = ownerId;
+	}
+
+	/**
+	 * 最終更新日時(エポック秒)を取得
+	 *
+	 * @return 最終更新日時(エポック秒)
+	 */
+	public Integer getUpdateAt() {
+		return updateAt;
+	}
+
+	/**
+	 * 最終更新日時(エポック秒)を設定
+	 *
+	 * @param updateAt 最終更新日時(エポック秒)
+	 */
+	public void setUpdateAt(Integer updateAt) {
+		this.updateAt = updateAt;
+	}
+
+	/**
+	 * ホストポートを取得
+	 *
+	 * @return ホストポート
+	 */
+	public Integer getPort() {
+		return port;
+	}
+
+	/**
+	 * ホストポートを設定
+	 *
+	 * @param port ホストポート
+	 */
+	public void setPort(Integer port) {
+		this.port = port;
+	}
+
 }

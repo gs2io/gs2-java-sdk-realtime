@@ -1,13 +1,28 @@
+/*
+ * Copyright 2016 Game Server Services, Inc. or its affiliates. All Rights
+ * Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ */
+
 package io.gs2.realtime.control;
 
-import io.gs2.control.Gs2BasicRequest;
+import org.json.JSONObject;
+import java.util.List;
 import io.gs2.realtime.Gs2Realtime;
+import io.gs2.control.Gs2BasicRequest;
 
 /**
- * ギャザリングの削除リクエスト。
- * 
  * @author Game Server Services, Inc.
- *
  */
 @SuppressWarnings("serial")
 public class DeleteGatheringRequest extends Gs2BasicRequest<DeleteGatheringRequest> {
@@ -16,66 +31,69 @@ public class DeleteGatheringRequest extends Gs2BasicRequest<DeleteGatheringReque
 		public static final String FUNCTION = "DeleteGathering";
 	}
 
-	/** ギャザリングプール名 */
-	String gatheringPoolName;
-	/** ギャザリング名 */
-	String gatheringName;
+	/** ギャザリングプールの名前を指定します。 */
+	private String gatheringPoolName;
+
+	/** ギャザリングの名前を指定します。 */
+	private String gatheringName;
+
 
 	/**
-	 * ギャザリングプール名を取得。
-	 * 
-	 * @return ギャザリングプール名
+	 * ギャザリングプールの名前を指定します。を取得
+	 *
+	 * @return ギャザリングプールの名前を指定します。
 	 */
 	public String getGatheringPoolName() {
 		return gatheringPoolName;
 	}
-	
+
 	/**
-	 * ギャザリングプール名を設定。
-	 * 
-	 * @param gatheringPoolName ギャザリングプール名
+	 * ギャザリングプールの名前を指定します。を設定
+	 *
+	 * @param gatheringPoolName ギャザリングプールの名前を指定します。
 	 */
 	public void setGatheringPoolName(String gatheringPoolName) {
 		this.gatheringPoolName = gatheringPoolName;
 	}
-	
+
 	/**
-	 * ギャザリングプール名を設定。
-	 * 
-	 * @param gatheringPoolName ギャザリングプール名
+	 * ギャザリングプールの名前を指定します。を設定
+	 *
+	 * @param gatheringPoolName ギャザリングプールの名前を指定します。
 	 * @return this
 	 */
 	public DeleteGatheringRequest withGatheringPoolName(String gatheringPoolName) {
 		setGatheringPoolName(gatheringPoolName);
 		return this;
 	}
-	
+
 	/**
-	 * ギャザリング名を取得。
-	 * 
-	 * @return ギャザリング名
+	 * ギャザリングの名前を指定します。を取得
+	 *
+	 * @return ギャザリングの名前を指定します。
 	 */
 	public String getGatheringName() {
 		return gatheringName;
 	}
-	
+
 	/**
-	 * ギャザリング名を設定。
-	 * 
-	 * @param gatheringName ギャザリング名
+	 * ギャザリングの名前を指定します。を設定
+	 *
+	 * @param gatheringName ギャザリングの名前を指定します。
 	 */
 	public void setGatheringName(String gatheringName) {
 		this.gatheringName = gatheringName;
 	}
-	
+
 	/**
-	 * ギャザリング名を設定。
-	 * 
-	 * @param gatheringName ギャザリング名
+	 * ギャザリングの名前を指定します。を設定
+	 *
+	 * @param gatheringName ギャザリングの名前を指定します。
 	 * @return this
 	 */
 	public DeleteGatheringRequest withGatheringName(String gatheringName) {
 		setGatheringName(gatheringName);
 		return this;
 	}
+
 }
