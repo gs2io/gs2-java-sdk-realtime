@@ -61,22 +61,27 @@ public class Gs2RealtimeClient extends AbstractGs2Client<Gs2RealtimeClient> {
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public CreateGatheringResult createGathering(CreateGatheringRequest request) {
 
 		ObjectNode body = JsonNodeFactory.instance.objectNode()
-				.put("userIds", request.getUserIds())
-				.put("name", request.getName());
+				.put("name", request.getName())
+				.put("userIds", request.getUserIds());
 
 		HttpPost post = createHttpPost(
-				Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + (request.getGatheringPoolName() == null ? "null" : request.getGatheringPoolName()) + "/gathering",
+				Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + (request.getGatheringPoolName() == null || request.getGatheringPoolName().equals("") ? "null" : request.getGatheringPoolName()) + "/gathering",
 				credential,
 				ENDPOINT,
 				CreateGatheringRequest.Constant.MODULE,
 				CreateGatheringRequest.Constant.FUNCTION,
 				body.toString());
+        if(request.getRequestId() != null) {
+            post.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		return doRequest(post, CreateGatheringResult.class);
@@ -89,7 +94,9 @@ public class Gs2RealtimeClient extends AbstractGs2Client<Gs2RealtimeClient> {
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public CreateGatheringPoolResult createGatheringPool(CreateGatheringPoolRequest request) {
@@ -105,6 +112,9 @@ public class Gs2RealtimeClient extends AbstractGs2Client<Gs2RealtimeClient> {
 				CreateGatheringPoolRequest.Constant.MODULE,
 				CreateGatheringPoolRequest.Constant.FUNCTION,
 				body.toString());
+        if(request.getRequestId() != null) {
+            post.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		return doRequest(post, CreateGatheringPoolResult.class);
@@ -117,11 +127,12 @@ public class Gs2RealtimeClient extends AbstractGs2Client<Gs2RealtimeClient> {
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 */
 
 	public void deleteGathering(DeleteGatheringRequest request) {
 
-	    String url = Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + (request.getGatheringPoolName() == null ? "null" : request.getGatheringPoolName()) + "/gathering/" + (request.getGatheringName() == null ? "null" : request.getGatheringName()) + "";
+	    String url = Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + (request.getGatheringPoolName() == null || request.getGatheringPoolName().equals("") ? "null" : request.getGatheringPoolName()) + "/gathering/" + (request.getGatheringName() == null || request.getGatheringName().equals("") ? "null" : request.getGatheringName()) + "";
 
 
 
@@ -131,6 +142,9 @@ public class Gs2RealtimeClient extends AbstractGs2Client<Gs2RealtimeClient> {
 				ENDPOINT,
 				DeleteGatheringRequest.Constant.MODULE,
 				DeleteGatheringRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            delete.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		doRequest(delete, null);
@@ -143,11 +157,12 @@ public class Gs2RealtimeClient extends AbstractGs2Client<Gs2RealtimeClient> {
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 */
 
 	public void deleteGatheringPool(DeleteGatheringPoolRequest request) {
 
-	    String url = Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + (request.getGatheringPoolName() == null ? "null" : request.getGatheringPoolName()) + "";
+	    String url = Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + (request.getGatheringPoolName() == null || request.getGatheringPoolName().equals("") ? "null" : request.getGatheringPoolName()) + "";
 
 
 
@@ -157,6 +172,9 @@ public class Gs2RealtimeClient extends AbstractGs2Client<Gs2RealtimeClient> {
 				ENDPOINT,
 				DeleteGatheringPoolRequest.Constant.MODULE,
 				DeleteGatheringPoolRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            delete.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		doRequest(delete, null);
@@ -169,12 +187,14 @@ public class Gs2RealtimeClient extends AbstractGs2Client<Gs2RealtimeClient> {
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public DescribeGatheringResult describeGathering(DescribeGatheringRequest request) {
 
-	    String url = Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + (request.getGatheringPoolName() == null ? "null" : request.getGatheringPoolName()) + "/gathering";
+	    String url = Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + (request.getGatheringPoolName() == null || request.getGatheringPoolName().equals("") ? "null" : request.getGatheringPoolName()) + "/gathering";
 
         List<NameValuePair> queryString = new ArrayList<>();
         if(request.getPageToken() != null) queryString.add(new BasicNameValuePair("pageToken", String.valueOf(request.getPageToken())));
@@ -190,6 +210,9 @@ public class Gs2RealtimeClient extends AbstractGs2Client<Gs2RealtimeClient> {
 				ENDPOINT,
 				DescribeGatheringRequest.Constant.MODULE,
 				DescribeGatheringRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            get.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		return doRequest(get, DescribeGatheringResult.class);
@@ -202,7 +225,9 @@ public class Gs2RealtimeClient extends AbstractGs2Client<Gs2RealtimeClient> {
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public DescribeGatheringPoolResult describeGatheringPool(DescribeGatheringPoolRequest request) {
@@ -223,6 +248,9 @@ public class Gs2RealtimeClient extends AbstractGs2Client<Gs2RealtimeClient> {
 				ENDPOINT,
 				DescribeGatheringPoolRequest.Constant.MODULE,
 				DescribeGatheringPoolRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            get.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		return doRequest(get, DescribeGatheringPoolResult.class);
@@ -235,12 +263,14 @@ public class Gs2RealtimeClient extends AbstractGs2Client<Gs2RealtimeClient> {
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public GetGatheringResult getGathering(GetGatheringRequest request) {
 
-	    String url = Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + (request.getGatheringPoolName() == null ? "null" : request.getGatheringPoolName()) + "/gathering/" + (request.getGatheringName() == null ? "null" : request.getGatheringName()) + "";
+	    String url = Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + (request.getGatheringPoolName() == null || request.getGatheringPoolName().equals("") ? "null" : request.getGatheringPoolName()) + "/gathering/" + (request.getGatheringName() == null || request.getGatheringName().equals("") ? "null" : request.getGatheringName()) + "";
 
 
 
@@ -250,6 +280,9 @@ public class Gs2RealtimeClient extends AbstractGs2Client<Gs2RealtimeClient> {
 				ENDPOINT,
 				GetGatheringRequest.Constant.MODULE,
 				GetGatheringRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            get.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		return doRequest(get, GetGatheringResult.class);
@@ -262,12 +295,14 @@ public class Gs2RealtimeClient extends AbstractGs2Client<Gs2RealtimeClient> {
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public GetGatheringPoolResult getGatheringPool(GetGatheringPoolRequest request) {
 
-	    String url = Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + (request.getGatheringPoolName() == null ? "null" : request.getGatheringPoolName()) + "";
+	    String url = Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + (request.getGatheringPoolName() == null || request.getGatheringPoolName().equals("") ? "null" : request.getGatheringPoolName()) + "";
 
 
 
@@ -277,6 +312,9 @@ public class Gs2RealtimeClient extends AbstractGs2Client<Gs2RealtimeClient> {
 				ENDPOINT,
 				GetGatheringPoolRequest.Constant.MODULE,
 				GetGatheringPoolRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            get.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		return doRequest(get, GetGatheringPoolResult.class);
@@ -289,7 +327,9 @@ public class Gs2RealtimeClient extends AbstractGs2Client<Gs2RealtimeClient> {
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public UpdateGatheringPoolResult updateGatheringPool(UpdateGatheringPoolRequest request) {
@@ -298,12 +338,15 @@ public class Gs2RealtimeClient extends AbstractGs2Client<Gs2RealtimeClient> {
 				.put("description", request.getDescription());
 
 		HttpPut put = createHttpPut(
-				Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + (request.getGatheringPoolName() == null ? "null" : request.getGatheringPoolName()) + "",
+				Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + (request.getGatheringPoolName() == null || request.getGatheringPoolName().equals("") ? "null" : request.getGatheringPoolName()) + "",
 				credential,
 				ENDPOINT,
 				UpdateGatheringPoolRequest.Constant.MODULE,
 				UpdateGatheringPoolRequest.Constant.FUNCTION,
 				body.toString());
+        if(request.getRequestId() != null) {
+            put.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		return doRequest(put, UpdateGatheringPoolResult.class);
