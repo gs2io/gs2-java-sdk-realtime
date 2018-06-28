@@ -27,23 +27,23 @@ import io.gs2.realtime.model.*;
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class CreateGatheringResult {
 
-	/** 購読 */
+	/** ギャザリング */
 	private Gathering item;
 
 
 	/**
-	 * 購読を取得
+	 * ギャザリングを取得
 	 *
-	 * @return 購読
+	 * @return ギャザリング
 	 */
 	public Gathering getItem() {
 		return item;
 	}
 
 	/**
-	 * 購読を設定
+	 * ギャザリングを設定
 	 *
-	 * @param item 購読
+	 * @param item ギャザリング
 	 */
 	public void setItem(Gathering item) {
 		this.item = item;

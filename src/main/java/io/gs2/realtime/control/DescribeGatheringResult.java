@@ -27,12 +27,30 @@ import io.gs2.realtime.model.*;
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class DescribeGatheringResult {
 
+	/** ギャザリング */
+	private List<Gathering> items;
+
 	/** 次のページを読み込むためのトークン */
 	private String nextPageToken;
 
-	/** 購読 */
-	private List<Gathering> items;
 
+	/**
+	 * ギャザリングを取得
+	 *
+	 * @return ギャザリング
+	 */
+	public List<Gathering> getItems() {
+		return items;
+	}
+
+	/**
+	 * ギャザリングを設定
+	 *
+	 * @param items ギャザリング
+	 */
+	public void setItems(List<Gathering> items) {
+		this.items = items;
+	}
 
 	/**
 	 * 次のページを読み込むためのトークンを取得
@@ -50,24 +68,6 @@ public class DescribeGatheringResult {
 	 */
 	public void setNextPageToken(String nextPageToken) {
 		this.nextPageToken = nextPageToken;
-	}
-
-	/**
-	 * 購読を取得
-	 *
-	 * @return 購読
-	 */
-	public List<Gathering> getItems() {
-		return items;
-	}
-
-	/**
-	 * 購読を設定
-	 *
-	 * @param items 購読
-	 */
-	public void setItems(List<Gathering> items) {
-		this.items = items;
 	}
 
 }

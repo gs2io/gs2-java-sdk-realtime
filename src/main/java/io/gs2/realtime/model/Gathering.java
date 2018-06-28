@@ -21,7 +21,7 @@ import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
- * 購読
+ * ギャザリング
  *
  * @author Game Server Services, Inc.
  *
@@ -30,8 +30,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class Gathering implements Serializable {
 
-	/** ホストGRN */
-	private String hostId;
+	/** ギャザリングID */
+	private String gatheringId;
+
+	/** ギャザリングプールGRN */
+	private String gatheringPoolId;
+
+	/** オーナーID */
+	private String ownerId;
 
 	/** ギャザリング名 */
 	private String name;
@@ -39,47 +45,74 @@ public class Gathering implements Serializable {
 	/** ホストIPアドレス */
 	private String ipAddress;
 
-	/** 参加可能なユーザIDリスト */
-	private List<String> userIds;
-
-	/** 通知GRN */
-	private String gatheringPoolId;
+	/** ホストポート */
+	private Integer port;
 
 	/** 暗号鍵 */
 	private String secret;
 
+	/** 参加可能なユーザIDリスト */
+	private List<String> userIds;
+
 	/** 作成日時(エポック秒) */
 	private Integer createAt;
-
-	/** 購読GRN */
-	private String gatheringId;
-
-	/** オーナーID */
-	private String ownerId;
 
 	/** 最終更新日時(エポック秒) */
 	private Integer updateAt;
 
-	/** ホストポート */
-	private Integer port;
-
 
 	/**
-	 * ホストGRNを取得
+	 * ギャザリングIDを取得
 	 *
-	 * @return ホストGRN
+	 * @return ギャザリングID
 	 */
-	public String getHostId() {
-		return hostId;
+	public String getGatheringId() {
+		return gatheringId;
 	}
 
 	/**
-	 * ホストGRNを設定
+	 * ギャザリングIDを設定
 	 *
-	 * @param hostId ホストGRN
+	 * @param gatheringId ギャザリングID
 	 */
-	public void setHostId(String hostId) {
-		this.hostId = hostId;
+	public void setGatheringId(String gatheringId) {
+		this.gatheringId = gatheringId;
+	}
+
+	/**
+	 * ギャザリングプールGRNを取得
+	 *
+	 * @return ギャザリングプールGRN
+	 */
+	public String getGatheringPoolId() {
+		return gatheringPoolId;
+	}
+
+	/**
+	 * ギャザリングプールGRNを設定
+	 *
+	 * @param gatheringPoolId ギャザリングプールGRN
+	 */
+	public void setGatheringPoolId(String gatheringPoolId) {
+		this.gatheringPoolId = gatheringPoolId;
+	}
+
+	/**
+	 * オーナーIDを取得
+	 *
+	 * @return オーナーID
+	 */
+	public String getOwnerId() {
+		return ownerId;
+	}
+
+	/**
+	 * オーナーIDを設定
+	 *
+	 * @param ownerId オーナーID
+	 */
+	public void setOwnerId(String ownerId) {
+		this.ownerId = ownerId;
 	}
 
 	/**
@@ -119,39 +152,21 @@ public class Gathering implements Serializable {
 	}
 
 	/**
-	 * 参加可能なユーザIDリストを取得
+	 * ホストポートを取得
 	 *
-	 * @return 参加可能なユーザIDリスト
+	 * @return ホストポート
 	 */
-	public List<String> getUserIds() {
-		return userIds;
+	public Integer getPort() {
+		return port;
 	}
 
 	/**
-	 * 参加可能なユーザIDリストを設定
+	 * ホストポートを設定
 	 *
-	 * @param userIds 参加可能なユーザIDリスト
+	 * @param port ホストポート
 	 */
-	public void setUserIds(List<String> userIds) {
-		this.userIds = userIds;
-	}
-
-	/**
-	 * 通知GRNを取得
-	 *
-	 * @return 通知GRN
-	 */
-	public String getGatheringPoolId() {
-		return gatheringPoolId;
-	}
-
-	/**
-	 * 通知GRNを設定
-	 *
-	 * @param gatheringPoolId 通知GRN
-	 */
-	public void setGatheringPoolId(String gatheringPoolId) {
-		this.gatheringPoolId = gatheringPoolId;
+	public void setPort(Integer port) {
+		this.port = port;
 	}
 
 	/**
@@ -173,6 +188,24 @@ public class Gathering implements Serializable {
 	}
 
 	/**
+	 * 参加可能なユーザIDリストを取得
+	 *
+	 * @return 参加可能なユーザIDリスト
+	 */
+	public List<String> getUserIds() {
+		return userIds;
+	}
+
+	/**
+	 * 参加可能なユーザIDリストを設定
+	 *
+	 * @param userIds 参加可能なユーザIDリスト
+	 */
+	public void setUserIds(List<String> userIds) {
+		this.userIds = userIds;
+	}
+
+	/**
 	 * 作成日時(エポック秒)を取得
 	 *
 	 * @return 作成日時(エポック秒)
@@ -191,42 +224,6 @@ public class Gathering implements Serializable {
 	}
 
 	/**
-	 * 購読GRNを取得
-	 *
-	 * @return 購読GRN
-	 */
-	public String getGatheringId() {
-		return gatheringId;
-	}
-
-	/**
-	 * 購読GRNを設定
-	 *
-	 * @param gatheringId 購読GRN
-	 */
-	public void setGatheringId(String gatheringId) {
-		this.gatheringId = gatheringId;
-	}
-
-	/**
-	 * オーナーIDを取得
-	 *
-	 * @return オーナーID
-	 */
-	public String getOwnerId() {
-		return ownerId;
-	}
-
-	/**
-	 * オーナーIDを設定
-	 *
-	 * @param ownerId オーナーID
-	 */
-	public void setOwnerId(String ownerId) {
-		this.ownerId = ownerId;
-	}
-
-	/**
 	 * 最終更新日時(エポック秒)を取得
 	 *
 	 * @return 最終更新日時(エポック秒)
@@ -242,24 +239,6 @@ public class Gathering implements Serializable {
 	 */
 	public void setUpdateAt(Integer updateAt) {
 		this.updateAt = updateAt;
-	}
-
-	/**
-	 * ホストポートを取得
-	 *
-	 * @return ホストポート
-	 */
-	public Integer getPort() {
-		return port;
-	}
-
-	/**
-	 * ホストポートを設定
-	 *
-	 * @param port ホストポート
-	 */
-	public void setPort(Integer port) {
-		this.port = port;
 	}
 
 }

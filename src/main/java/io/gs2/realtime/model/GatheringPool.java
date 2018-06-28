@@ -33,20 +33,20 @@ public class GatheringPool implements Serializable {
 	/** ギャザリングプールGRN */
 	private String gatheringPoolId;
 
-	/** 作成日時(エポック秒) */
-	private Integer createAt;
+	/** オーナーID */
+	private String ownerId;
+
+	/** ギャザリングプール名 */
+	private String name;
 
 	/** 説明文 */
 	private String description;
 
-	/** オーナーID */
-	private String ownerId;
+	/** 作成日時(エポック秒) */
+	private Integer createAt;
 
 	/** 最終更新日時(エポック秒) */
 	private Integer updateAt;
-
-	/** ギャザリングプール名 */
-	private String name;
 
 
 	/**
@@ -68,21 +68,39 @@ public class GatheringPool implements Serializable {
 	}
 
 	/**
-	 * 作成日時(エポック秒)を取得
+	 * オーナーIDを取得
 	 *
-	 * @return 作成日時(エポック秒)
+	 * @return オーナーID
 	 */
-	public Integer getCreateAt() {
-		return createAt;
+	public String getOwnerId() {
+		return ownerId;
 	}
 
 	/**
-	 * 作成日時(エポック秒)を設定
+	 * オーナーIDを設定
 	 *
-	 * @param createAt 作成日時(エポック秒)
+	 * @param ownerId オーナーID
 	 */
-	public void setCreateAt(Integer createAt) {
-		this.createAt = createAt;
+	public void setOwnerId(String ownerId) {
+		this.ownerId = ownerId;
+	}
+
+	/**
+	 * ギャザリングプール名を取得
+	 *
+	 * @return ギャザリングプール名
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * ギャザリングプール名を設定
+	 *
+	 * @param name ギャザリングプール名
+	 */
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	/**
@@ -104,21 +122,21 @@ public class GatheringPool implements Serializable {
 	}
 
 	/**
-	 * オーナーIDを取得
+	 * 作成日時(エポック秒)を取得
 	 *
-	 * @return オーナーID
+	 * @return 作成日時(エポック秒)
 	 */
-	public String getOwnerId() {
-		return ownerId;
+	public Integer getCreateAt() {
+		return createAt;
 	}
 
 	/**
-	 * オーナーIDを設定
+	 * 作成日時(エポック秒)を設定
 	 *
-	 * @param ownerId オーナーID
+	 * @param createAt 作成日時(エポック秒)
 	 */
-	public void setOwnerId(String ownerId) {
-		this.ownerId = ownerId;
+	public void setCreateAt(Integer createAt) {
+		this.createAt = createAt;
 	}
 
 	/**
@@ -137,24 +155,6 @@ public class GatheringPool implements Serializable {
 	 */
 	public void setUpdateAt(Integer updateAt) {
 		this.updateAt = updateAt;
-	}
-
-	/**
-	 * ギャザリングプール名を取得
-	 *
-	 * @return ギャザリングプール名
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * ギャザリングプール名を設定
-	 *
-	 * @param name ギャザリングプール名
-	 */
-	public void setName(String name) {
-		this.name = name;
 	}
 
 }

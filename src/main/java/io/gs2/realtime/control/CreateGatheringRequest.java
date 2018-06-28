@@ -34,11 +34,11 @@ public class CreateGatheringRequest extends Gs2BasicRequest<CreateGatheringReque
 	/** ギャザリングプールの名前を指定します。 */
 	private String gatheringPoolName;
 
-	/** カンマ区切りのギャザリングへの参加を許可するユーザIDリスト */
-	private String userIds;
-
 	/** ギャザリング名 */
 	private String name;
+
+	/** カンマ区切りのギャザリングへの参加を許可するユーザIDリスト */
+	private String userIds;
 
 
 	/**
@@ -71,35 +71,6 @@ public class CreateGatheringRequest extends Gs2BasicRequest<CreateGatheringReque
 	}
 
 	/**
-	 * カンマ区切りのギャザリングへの参加を許可するユーザIDリストを取得
-	 *
-	 * @return カンマ区切りのギャザリングへの参加を許可するユーザIDリスト
-	 */
-	public String getUserIds() {
-		return userIds;
-	}
-
-	/**
-	 * カンマ区切りのギャザリングへの参加を許可するユーザIDリストを設定
-	 *
-	 * @param userIds カンマ区切りのギャザリングへの参加を許可するユーザIDリスト
-	 */
-	public void setUserIds(String userIds) {
-		this.userIds = userIds;
-	}
-
-	/**
-	 * カンマ区切りのギャザリングへの参加を許可するユーザIDリストを設定
-	 *
-	 * @param userIds カンマ区切りのギャザリングへの参加を許可するユーザIDリスト
-	 * @return this
-	 */
-	public CreateGatheringRequest withUserIds(String userIds) {
-		setUserIds(userIds);
-		return this;
-	}
-
-	/**
 	 * ギャザリング名を取得
 	 *
 	 * @return ギャザリング名
@@ -125,6 +96,35 @@ public class CreateGatheringRequest extends Gs2BasicRequest<CreateGatheringReque
 	 */
 	public CreateGatheringRequest withName(String name) {
 		setName(name);
+		return this;
+	}
+
+	/**
+	 * カンマ区切りのギャザリングへの参加を許可するユーザIDリストを取得
+	 *
+	 * @return カンマ区切りのギャザリングへの参加を許可するユーザIDリスト
+	 */
+	public String getUserIds() {
+		return userIds;
+	}
+
+	/**
+	 * カンマ区切りのギャザリングへの参加を許可するユーザIDリストを設定
+	 *
+	 * @param userIds カンマ区切りのギャザリングへの参加を許可するユーザIDリスト
+	 */
+	public void setUserIds(String userIds) {
+		this.userIds = userIds;
+	}
+
+	/**
+	 * カンマ区切りのギャザリングへの参加を許可するユーザIDリストを設定
+	 *
+	 * @param userIds カンマ区切りのギャザリングへの参加を許可するユーザIDリスト
+	 * @return this
+	 */
+	public CreateGatheringRequest withUserIds(String userIds) {
+		setUserIds(userIds);
 		return this;
 	}
 
