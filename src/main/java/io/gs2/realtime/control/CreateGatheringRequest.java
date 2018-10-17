@@ -18,6 +18,7 @@ package io.gs2.realtime.control;
 
 import org.json.JSONObject;
 import java.util.List;
+import io.gs2.realtime.model.*;
 import io.gs2.realtime.Gs2Realtime;
 import io.gs2.control.Gs2BasicRequest;
 
@@ -37,8 +38,8 @@ public class CreateGatheringRequest extends Gs2BasicRequest<CreateGatheringReque
 	/** ギャザリング名 */
 	private String name;
 
-	/** カンマ区切りのギャザリングへの参加を許可するユーザIDリスト */
-	private String userIds;
+	/** ギャザリングへの参加を許可するユーザIDリスト */
+	private List<String> userIds;
 
 
 	/**
@@ -100,30 +101,30 @@ public class CreateGatheringRequest extends Gs2BasicRequest<CreateGatheringReque
 	}
 
 	/**
-	 * カンマ区切りのギャザリングへの参加を許可するユーザIDリストを取得
+	 * ギャザリングへの参加を許可するユーザIDリストを取得
 	 *
-	 * @return カンマ区切りのギャザリングへの参加を許可するユーザIDリスト
+	 * @return ギャザリングへの参加を許可するユーザIDリスト
 	 */
-	public String getUserIds() {
+	public List<String> getUserIds() {
 		return userIds;
 	}
 
 	/**
-	 * カンマ区切りのギャザリングへの参加を許可するユーザIDリストを設定
+	 * ギャザリングへの参加を許可するユーザIDリストを設定
 	 *
-	 * @param userIds カンマ区切りのギャザリングへの参加を許可するユーザIDリスト
+	 * @param userIds ギャザリングへの参加を許可するユーザIDリスト
 	 */
-	public void setUserIds(String userIds) {
+	public void setUserIds(List<String> userIds) {
 		this.userIds = userIds;
 	}
 
 	/**
-	 * カンマ区切りのギャザリングへの参加を許可するユーザIDリストを設定
+	 * ギャザリングへの参加を許可するユーザIDリストを設定
 	 *
-	 * @param userIds カンマ区切りのギャザリングへの参加を許可するユーザIDリスト
+	 * @param userIds ギャザリングへの参加を許可するユーザIDリスト
 	 * @return this
 	 */
-	public CreateGatheringRequest withUserIds(String userIds) {
+	public CreateGatheringRequest withUserIds(List<String> userIds) {
 		setUserIds(userIds);
 		return this;
 	}

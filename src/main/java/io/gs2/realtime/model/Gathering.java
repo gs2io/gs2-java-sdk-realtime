@@ -16,9 +16,13 @@
 
 package io.gs2.realtime.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 /**
  * ギャザリング
@@ -80,6 +84,17 @@ public class Gathering implements Serializable {
 	}
 
 	/**
+	 * ギャザリングIDを設定
+	 *
+	 * @param gatheringId ギャザリングID
+	 * @return this
+	 */
+	public Gathering withGatheringId(String gatheringId) {
+		this.gatheringId = gatheringId;
+		return this;
+	}
+
+	/**
 	 * ギャザリングプールGRNを取得
 	 *
 	 * @return ギャザリングプールGRN
@@ -95,6 +110,17 @@ public class Gathering implements Serializable {
 	 */
 	public void setGatheringPoolId(String gatheringPoolId) {
 		this.gatheringPoolId = gatheringPoolId;
+	}
+
+	/**
+	 * ギャザリングプールGRNを設定
+	 *
+	 * @param gatheringPoolId ギャザリングプールGRN
+	 * @return this
+	 */
+	public Gathering withGatheringPoolId(String gatheringPoolId) {
+		this.gatheringPoolId = gatheringPoolId;
+		return this;
 	}
 
 	/**
@@ -116,6 +142,17 @@ public class Gathering implements Serializable {
 	}
 
 	/**
+	 * オーナーIDを設定
+	 *
+	 * @param ownerId オーナーID
+	 * @return this
+	 */
+	public Gathering withOwnerId(String ownerId) {
+		this.ownerId = ownerId;
+		return this;
+	}
+
+	/**
 	 * ギャザリング名を取得
 	 *
 	 * @return ギャザリング名
@@ -131,6 +168,17 @@ public class Gathering implements Serializable {
 	 */
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	/**
+	 * ギャザリング名を設定
+	 *
+	 * @param name ギャザリング名
+	 * @return this
+	 */
+	public Gathering withName(String name) {
+		this.name = name;
+		return this;
 	}
 
 	/**
@@ -152,6 +200,17 @@ public class Gathering implements Serializable {
 	}
 
 	/**
+	 * ホストIPアドレスを設定
+	 *
+	 * @param ipAddress ホストIPアドレス
+	 * @return this
+	 */
+	public Gathering withIpAddress(String ipAddress) {
+		this.ipAddress = ipAddress;
+		return this;
+	}
+
+	/**
 	 * ホストポートを取得
 	 *
 	 * @return ホストポート
@@ -167,6 +226,17 @@ public class Gathering implements Serializable {
 	 */
 	public void setPort(Integer port) {
 		this.port = port;
+	}
+
+	/**
+	 * ホストポートを設定
+	 *
+	 * @param port ホストポート
+	 * @return this
+	 */
+	public Gathering withPort(Integer port) {
+		this.port = port;
+		return this;
 	}
 
 	/**
@@ -188,6 +258,17 @@ public class Gathering implements Serializable {
 	}
 
 	/**
+	 * 暗号鍵を設定
+	 *
+	 * @param secret 暗号鍵
+	 * @return this
+	 */
+	public Gathering withSecret(String secret) {
+		this.secret = secret;
+		return this;
+	}
+
+	/**
 	 * 参加可能なユーザIDリストを取得
 	 *
 	 * @return 参加可能なユーザIDリスト
@@ -203,6 +284,17 @@ public class Gathering implements Serializable {
 	 */
 	public void setUserIds(List<String> userIds) {
 		this.userIds = userIds;
+	}
+
+	/**
+	 * 参加可能なユーザIDリストを設定
+	 *
+	 * @param userIds 参加可能なユーザIDリスト
+	 * @return this
+	 */
+	public Gathering withUserIds(List<String> userIds) {
+		this.userIds = userIds;
+		return this;
 	}
 
 	/**
@@ -224,6 +316,17 @@ public class Gathering implements Serializable {
 	}
 
 	/**
+	 * 作成日時(エポック秒)を設定
+	 *
+	 * @param createAt 作成日時(エポック秒)
+	 * @return this
+	 */
+	public Gathering withCreateAt(Integer createAt) {
+		this.createAt = createAt;
+		return this;
+	}
+
+	/**
 	 * 最終更新日時(エポック秒)を取得
 	 *
 	 * @return 最終更新日時(エポック秒)
@@ -241,4 +344,39 @@ public class Gathering implements Serializable {
 		this.updateAt = updateAt;
 	}
 
+	/**
+	 * 最終更新日時(エポック秒)を設定
+	 *
+	 * @param updateAt 最終更新日時(エポック秒)
+	 * @return this
+	 */
+	public Gathering withUpdateAt(Integer updateAt) {
+		this.updateAt = updateAt;
+		return this;
+	}
+
+
+    public ObjectNode toJson() {
+
+        List<JsonNode> userIdsNode = new ArrayList<>();
+        if(this.userIds != null) {
+            for(String item : this.userIds) {
+                userIdsNode.add(JsonNodeFactory.instance.textNode(item));
+            }
+        }
+		ObjectNode body = JsonNodeFactory.instance.objectNode()
+
+            .put("gatheringId", this.getGatheringId())
+            .put("gatheringPoolId", this.getGatheringPoolId())
+            .put("ownerId", this.getOwnerId())
+            .put("name", this.getName())
+            .put("ipAddress", this.getIpAddress())
+            .put("port", this.getPort())
+            .put("secret", this.getSecret())
+            .put("createAt", this.getCreateAt())
+            .put("updateAt", this.getUpdateAt());
+
+        body.set("userIds", JsonNodeFactory.instance.arrayNode().addAll(userIdsNode));
+        return body;
+    }
 }

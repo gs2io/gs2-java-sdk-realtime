@@ -18,7 +18,6 @@ package io.gs2.realtime;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import io.gs2.model.Region;
 import io.gs2.util.EncodingUtil;
@@ -32,6 +31,7 @@ import org.apache.http.message.BasicNameValuePair;
 
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.databind.JsonNode;
 
 import io.gs2.AbstractGs2Client;
 import io.gs2.Gs2Constant;
@@ -75,6 +75,7 @@ public class Gs2RealtimeClient extends AbstractGs2Client<Gs2RealtimeClient> {
 	 */
 	public Gs2RealtimeClient(IGs2Credential credential, String region) {
 		super(credential, region);
+
 	}
 
 
@@ -124,7 +125,6 @@ public class Gs2RealtimeClient extends AbstractGs2Client<Gs2RealtimeClient> {
 	    String url = Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + (request.getGatheringPoolName() == null || request.getGatheringPoolName().equals("") ? "null" : request.getGatheringPoolName()) + "";
 
 
-
 		HttpDelete delete = createHttpDelete(
 				url,
 				credential,
@@ -159,7 +159,6 @@ public class Gs2RealtimeClient extends AbstractGs2Client<Gs2RealtimeClient> {
         if(request.getPageToken() != null) queryString.add(new BasicNameValuePair("pageToken", String.valueOf(request.getPageToken())));
         if(request.getLimit() != null) queryString.add(new BasicNameValuePair("limit", String.valueOf(request.getLimit())));
 
-
 		if(queryString.size() > 0) {
 			url += "?" + URLEncodedUtils.format(queryString, "UTF-8");
 		}
@@ -192,7 +191,6 @@ public class Gs2RealtimeClient extends AbstractGs2Client<Gs2RealtimeClient> {
 	public GetGatheringPoolResult getGatheringPool(GetGatheringPoolRequest request) {
 
 	    String url = Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + (request.getGatheringPoolName() == null || request.getGatheringPoolName().equals("") ? "null" : request.getGatheringPoolName()) + "";
-
 
 
 		HttpGet get = createHttpGet(
@@ -256,7 +254,13 @@ public class Gs2RealtimeClient extends AbstractGs2Client<Gs2RealtimeClient> {
 
 		ObjectNode body = JsonNodeFactory.instance.objectNode();
         if(request.getName() != null) body.put("name", request.getName());
-        if(request.getUserIds() != null) body.put("userIds", request.getUserIds());
+        if(request.getUserIds() != null) {
+            List<JsonNode> node = new ArrayList<>();
+            for(String item : request.getUserIds()) {
+                node.add(JsonNodeFactory.instance.textNode(item));
+            }
+            body.set("userIds", JsonNodeFactory.instance.arrayNode().addAll(node));
+		}
 
 		HttpPost post = createHttpPost(
 				Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + (request.getGatheringPoolName() == null || request.getGatheringPoolName().equals("") ? "null" : request.getGatheringPoolName()) + "/gathering",
@@ -286,7 +290,6 @@ public class Gs2RealtimeClient extends AbstractGs2Client<Gs2RealtimeClient> {
 	public void deleteGathering(DeleteGatheringRequest request) {
 
 	    String url = Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + (request.getGatheringPoolName() == null || request.getGatheringPoolName().equals("") ? "null" : request.getGatheringPoolName()) + "/gathering/" + (request.getGatheringName() == null || request.getGatheringName().equals("") ? "null" : request.getGatheringName()) + "";
-
 
 
 		HttpDelete delete = createHttpDelete(
@@ -323,7 +326,6 @@ public class Gs2RealtimeClient extends AbstractGs2Client<Gs2RealtimeClient> {
         if(request.getPageToken() != null) queryString.add(new BasicNameValuePair("pageToken", String.valueOf(request.getPageToken())));
         if(request.getLimit() != null) queryString.add(new BasicNameValuePair("limit", String.valueOf(request.getLimit())));
 
-
 		if(queryString.size() > 0) {
 			url += "?" + URLEncodedUtils.format(queryString, "UTF-8");
 		}
@@ -356,7 +358,6 @@ public class Gs2RealtimeClient extends AbstractGs2Client<Gs2RealtimeClient> {
 	public GetGatheringResult getGathering(GetGatheringRequest request) {
 
 	    String url = Gs2Constant.ENDPOINT_HOST + "/gatheringPool/" + (request.getGatheringPoolName() == null || request.getGatheringPoolName().equals("") ? "null" : request.getGatheringPoolName()) + "/gathering/" + (request.getGatheringName() == null || request.getGatheringName().equals("") ? "null" : request.getGatheringName()) + "";
-
 
 
 		HttpGet get = createHttpGet(
